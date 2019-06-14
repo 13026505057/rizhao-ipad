@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "人脸验证",
+  "titleNView": {
+    "titleSize": "30"
+  },
+  "usingComponents": {
+    "m-input": "/components/m-input"
+  }
+}

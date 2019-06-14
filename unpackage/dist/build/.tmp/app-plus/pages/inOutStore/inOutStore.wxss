@@ -1,0 +1,191 @@
+
+page{
+	width:100%;
+	height: 100%;
+}
+page,._div,._dl,._dt,._dd,._ul,._ol,._li,._h1,._h2,._h3,._h4,._h5,._h6,._pre,._code,form,._fieldset,._legend,input,textarea,._p,._blockquote,._th,._td,._hr,button,._article,._aside,._details,._figcaption,._figure,._footer,._header,hgroup,._menu,._nav,._section{
+	padding: 0;
+	margin: 0
+}
+.caseClass{
+	width: 100%;
+	height: 50rpx;
+	line-height: 50rpx;
+	text-indent: 10rpx;
+	color: #fff;
+	border-bottom: 1px solid #fff;
+	font-size: 20rpx;
+	overflow: hidden;
+	-o-text-overflow:ellipsis;
+	   text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.caseClass1{
+	width: 100%;
+	height: 50rpx;
+	line-height: 50rpx;
+	text-indent: 10rpx;
+	color: #fff;
+	border-bottom: 1px solid #fff;
+	font-size: 20rpx;
+	overflow: hidden;
+	-o-text-overflow:ellipsis;
+	   text-overflow:ellipsis;
+	white-space: nowrap;
+	background-color: #F37B1D;
+}
+.back{
+	width:150rpx;
+	height: 60rpx;
+	float: right;
+	position: fixed;
+	bottom: 10rpx;
+	right: 200rpx;
+	background-color: red;
+	color: #fff;
+	line-height: 60rpx;
+	text-align: center;
+	border:1px solid red;
+	-webkit-border-radius: 10rpx;
+	        border-radius: 10rpx;
+}
+.back1{
+	width:150rpx;
+	height: 60rpx;
+	float: right;
+	position: fixed;
+	bottom: 10rpx;
+	right: 20rpx;
+	background-color: #ccc;
+	color: #000;
+	line-height: 60rpx;
+	text-align: center;
+	border:1px solid #ccc;
+	-webkit-border-radius: 10rpx;
+	        border-radius: 10rpx;
+}
+.navScroll{
+	width: 100%;
+	height: 100%;
+	overflow-x:scroll;
+}
+.scrollItem{
+	width: 33.3%;
+	height: 100%;
+	float: left;
+	line-height: 60rpx;
+	text-align: center;
+	border-bottom: 2rpx solid #fff;
+}
+.scrollItem1{
+	width: 33.3%;
+	height: 100%;
+	float: left;
+	line-height: 60rpx;
+	text-align: center;
+	
+	border-right: 1rpx solid #fff;
+}
+.scrollItem2{
+	width: 33.3%;
+	height: 100%;
+	float: left;
+	line-height: 60rpx;
+	text-align: center;
+	border-left: 1rpx solid #fff;
+	border-right: 1rpx solid #fff;
+}
+.scrollItem3{
+	width: 33.3%;
+	height: 100%;
+	float: left;
+	line-height: 60rpx;
+	text-align: center;
+	border-left: 1px solid #fff;
+}
+.navItem{
+	width: 49.8%;
+	height: 100%;
+	overflow: hidden;
+	float: left;
+	color: #fff;
+	line-height: 60rpx;
+	text-align: center;
+}
+.topNav{
+	width:85%;
+	height:10%;
+	margin:0 auto;
+	margin-top: 7%;
+	overflow: hidden;
+	border:2px solid #fff;
+	border-bottom: none;
+}
+.item{
+	width: 49.8%;
+	height: 100%;
+	overflow-y: scroll;
+	float: left;
+}
+.policeLogo{
+	width:60rpx;
+	height: 60rpx;
+	position: absolute;
+	top: 10rpx;
+	left: 20rpx;
+}
+.policeLogo ._img{
+	width:60rpx;
+	height: 60rpx;
+}
+.bgClass{
+	width:100%;
+	height:100%;
+	position: absolute;
+	top: 0rpx;
+	left:0rpx;
+	z-index: -999;
+}
+.bgClass ._img{
+	width:100%;
+	height:100%;
+}
+.bigBox{
+	width:100%;
+	height:100%;
+	overflow: hidden;
+}
+.iconBox{
+	width:200rpx;
+	height: 200rpx;
+	text-align: center;
+	
+	-webkit-border-radius: 50%;
+	
+	        border-radius: 50%;
+	position: absolute;
+	overflow: hidden;
+}
+.iconBox ._img{
+	width:100%;
+	height: 100%;
+}
+.flexBox{
+	width:85%;
+	height:65%;
+	margin:0 auto;
+	
+	overflow: hidden;
+	border:2px solid #fff;
+	border-top: none;
+}
+.topTitle{
+	width:960px;
+	height: 80px;
+	line-height: 120px;
+	color: #fff;
+	font-size: 30px;
+	text-align: center;
+	z-index: 999;
+}
+

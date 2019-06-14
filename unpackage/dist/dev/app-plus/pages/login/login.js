@@ -1,0 +1,2 @@
+setCssToHead(["body{ width: 100%; height: 100%; }\n",],undefined,{path:"./pages/login/login.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/login/login.wxml') } }));

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "注册人脸",
+  "usingComponents": {
+    "m-input": "/components/m-input"
+  }
+}

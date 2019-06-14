@@ -1,0 +1,2 @@
+setCssToHead(["body{ width: 100%; height: 100%; }\n",],undefined,{path:"./pages/registFace/registFace.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/registFace/registFace.wxml') } }));

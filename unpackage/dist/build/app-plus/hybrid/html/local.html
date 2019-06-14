@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+	<script type="text/javascript" src="./js/uniApp.js"></script>
+	<script type="text/javascript" src="./js/axios.js"></script>
+	<script type="text/javascript" src="./js/tracking-min.js"></script>
+	<script type="text/javascript" src="./js/face-min.js"></script>
+	<script type="text/javascript" src="./js/html2canvas.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no" charset="utf-8">
+    <title>人脸验证</title>
+</head>
+ 
+<body>
+	<div class="box">
+		<div class="policeLogo">
+			<img src="../../static/img/policeLogo.png" alt="">
+		</div>
+		<div class="bgClass">
+			<img src="../../static/img/bg.png" alt="">
+		</div>
+		<!-- <div class="centerBox">
+			
+		</div> -->
+		<img id="gifFace" style="display: none; position: absolute;top:50%;left: 50%;margin-left:-160px;margin-top:-100px;width:320px;height:200px;z-index:999;" src="../../static/img/facegif.gif" alt="">
+		<video id="video" width="320" height="200" autoplay></video>
+		<!-- <div style="width:100%;height:1px;background-color:#000;position:absolute;top:200px;z-index:9999;"></div> -->
+		<canvas id="canvas" width="320" height="200"></canvas>
+		<canvas id="shotCut" width="320" height="200"></canvas>		
+	</div>
+   
+    
+</body>
+<script type="text/javascript">
+	document.addEventListener('UniAppJSBridgeReady', function() {
+		var userName = localStorage.getItem('userName');
+		console.log(userName)
+		var aVideo = document.getElementById('video');
+		var aCanvas = document.getElementById('canvas');
+		var shortCut = document.getElementById('shotCut');
+		var gif = document.getElementById('gifFace');
+		let time = 0;
+		let timer = null;
+		// aCanvas.width = 320;
+		// aCanvas.height = 200;
+		// shortCut.width = 320;
+		// shortCut.height = 200;
+		var bigImg =document.getElementById('bigImg'); 
+		
+		
+	    var scContext = shortCut.getContext('2d');
+		var ctx = aCanvas.getContext('2d');
+		var imgSrc;
+		let countNum = 0;
+		navigator.getUserMedia = navigator.getUserMedia ||
+			navigator.webkitGetUserMedia ||
+			navigator.mozGetUserMedia ||
+			navigator.msGetUserMedia; //获取媒体对象（这里指摄像头）
+		navigator.getUserMedia({
+			video: true
+		}, gotStream, noStream); //参数1获取用户打开权限；参数二成功打开后调用，并传一个视频流对象，参数三打开失败后调用，传错误信息
+	 
+		function gotStream(stream) {
+			video.srcObject = stream;
+			console.log(stream)
+			video.onerror = function() {
+				stream.stop();
+			};
+			stream.onended = noStream;
+			video.onloadedmetadata = function() {
+				// alert('摄像头成功打开！');
+			};
+		}
+	 
+		function noStream(err) {
+			alert(err);
+		}
+		// setTimeout(function(){
+		// 	console.log(666)
+		// 	html2canvas(aVideo, {
+		// 	  onrendered: function(canvas) {
+		// 		var url = canvas.toDataURL();//图片地址
+		// 		document.body.appendChild(canvas);
+		// 		console.log(url)
+		// 	  },
+		// 	  width: 300,
+		// 	  height: 300,
+		// 	  logging:false
+		// 	});
+		// },30000)
+		var tracker = new tracking.ObjectTracker('face');
+		tracker.setInitialScale(4);
+		tracker.setStepSize(2);
+		tracker.setEdgesDensity(0.1);
+		
+		tracking.track('#video', tracker, { camera: true });
+		
+		tracker.on('track', function(event) {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+		
+			event.data.forEach(function(rect) {
+				if (event.data.length === 0) {
+	        		ctx.clearRect(0, 0, canvas.width, canvas.height);
+					gif.style.display = "none";
+	        	}else{
+	        		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	        		event.data.forEach(function (rect) {
+		                ctx.strokeStyle = '#ff0000';
+		                ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+		                ctx.fillStyle = "#ff0000";
+		                //console.log(rect.x, rect.width, rect.y, rect.height);
+		            });
+	        		scContext.drawImage(video,0,0,320,200);
+					var imgStr = shortCut.toDataURL("image/png",1.0);
+					time++;
+					console.log(time)
+					console.log(plus.device.uuid)
+					if(time==7){
+							gif.style.display = "block";
+							axios.request({
+								method: 'post',
+								url: 'http://www.kofanchina.com/exhibit/public/index.php/pad/login/add',
+								data: {
+									basestr:imgStr,
+									pad_code:plus.device.uuid
+								},
+								headers: {'Content-Type': 'application/json'},
+							}).then(function(data){
+								console.log(JSON.stringify(data))
+								if(data.data.code==0){
+									// uni.showToast({
+									// 	title: '注册成功',
+									// 	duration: 2000
+									// });
+									setTimeout(function(){
+										uni.redirectTo({
+											url: '/pages/login/login'
+										});
+									},2000);
+									return;
+									
+								}else{
+									alert('注册失败')
+									uni.navigateBack({
+										delta: 3
+									});
+									return;
+									
+									
+									
+								}
+							});
+							
+							
+					}else if(time==5){
+						
+						// axios.request({
+						// 	method: 'post',
+						//    url: 'http://192.168.2.103:8080/meet/loginByFace',
+						//    data: params,
+						//    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+						// }).then(function(data){
+						// 		 
+						// });
+					}else if(time==15){
+						
+						// axios.request({
+						// 	method: 'post',
+						//    url: 'http://192.168.2.103:8080/meet/loginByFace',
+						//    data: params,
+						//    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+						// }).then(function(data){
+						// 		 
+						// });
+					}else if(time>100){
+						// uni.reLaunch({
+						// 	url: '/pages/faceFail/faceFail'
+						// });
+					}else{
+						
+					}
+					
+									
+								
+					return;
+	        		
+	        	}
+				// ctx.drawImage(video, 0, 0, 200, 150);
+				// ctx.drawImage(bigImg, 0, 0, 320, 200);
+				// var snapData = aCanvas.toDataURL('image/png');
+				// setTimeout(function(){
+				// 	testImg.src = snapData
+				// },1000)
+				// imgSrc = "data:image/png;"+snapData;
+				// console.log(imgSrc)
+				// var params = new URLSearchParams();
+				// params.append('faceBase64',imgSrc);
+				// params.append('mac_machine_code',plus.device.uuid);
+				// alert(1)
+     //            axios.request({
+     //                method: 'post',
+     //                url: 'http://192.168.2.109:8080/meet/loginByFace',
+     //                data: params,
+     //                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+     //             }).then(function(data){
+					//  countNum++;
+					//  
+     //                // console.log(data)
+					// // alert(data)
+					// // uni.reLaunch({
+					// // 	url: '/pages/number/number'
+					// // });
+					// // if(data.data.code==0){
+					// // 	uni.reLaunch({
+					// // 		url: '/pages/number/number'
+					// // 	});
+					// // }else{
+					// // 	if(countNum>3){
+					// // 		uni.reLaunch({
+					// // 			url: '/pages/faceFail/faceFail'
+					// // 		});
+					// // 	}
+					// // 	
+					// // }
+     //             });
+				
+				// var imgSrc = "data:image/png;" + snapData;
+				// console.log(snapData)
+				
+			});
+		});
+	
+	
+		// alert('可以使用uni')
+        
+		
+        uni.getEnv(function(res) {
+            console.log('当前环境：' + JSON.stringify(res));
+        });
+		
+    });
+</script>
+<style>
+	body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+		padding: 0;
+		margin: 0
+	}
+	html,body{
+		width:100%;
+		height:100%;
+		margin:0px;
+		padding: 0px;
+		overflow: hidden;
+	}
+	.centerBox{
+		width:90%;
+		height: 90%;
+		margin:0 auto;
+		margin-top:5%;
+		border:1px solid #fff;
+		background-color: #1a58c7;
+		opacity: 0.3;
+		z-index: -10;
+	}
+	.policeLogo{
+		width:60upx;
+		height: 60upx;
+		position: absolute;
+		top: 10upx;
+		left: 20upx;
+	}
+	.policeLogo img{
+		width:60upx;
+		height: 60upx;
+	}
+	.bgClass{
+		width:100%;
+		height:100%;
+		position: absolute;
+		top: 0upx;
+		left:0upx;
+		z-index: -999;
+	}
+	.bgClass img{
+		width:100%;
+		height:100%;
+		
+	}
+	.line{
+		width:960px;
+		height: 3px;
+	}
+	.line img{
+		width:960px;
+		height: 3px;
+	}
+	.topTitle{
+		width:960px;
+		height: 80px;
+		line-height: 120px;
+		color: #fff;
+		font-size: 30px;
+		text-align: center;
+		z-index: 999;
+	}
+	.bigBoxImg{
+		width: 960px;
+		height: 565px;
+		position: absolute;
+		top:0px;
+		left:0px;
+		z-index: -999;
+	}
+	.box{
+		width:100%;
+		height:100%;
+		overflow: hidden;
+		/* background-color: red; */
+		/* background-image:url('../../static/img/indexBg.png') */
+		
+	}
+	.cirleBox{
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		left:50%;
+		height: 50%;
+		
+	}
+	#canvas,#shotCut{
+		position:absolute;
+		top:50%;
+		left:50%;
+		margin-left:-1600px;
+		margin-top:-1000px;
+	}
+	#video{
+		position:absolute;
+		top:50%;
+		left:50%;
+		margin-left:-160px;
+		margin-top:-100px;
+		z-index:888;
+		/* border:1px solid yellow; */
+		/* border-radius: 50%; */
+		/* margin: 0 auto; */
+	}
+	.cirleBox{
+		
+	}
+</style>
+</html>

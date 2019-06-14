@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/show/show",
+    "pages/inOutStore/inOutStore",
+    "pages/bleList/bleList",
+    "pages/faceList/faceList",
+    "pages/faceFail/faceFail",
+    "pages/login/login",
+    "pages/main/main",
+    "pages/reg/reg",
+    "pages/pwd/pwd",
+    "pages/user/user",
+    "pages/downimg/downimg",
+    "pages/registFace/registFace",
+    "pages/logins/logins",
+    "pages/meetingAgenda/meetingAgenda",
+    "pages/meetingFile/meetingFile",
+    "pages/vote/vote",
+    "pages/voteDetail/voteDetail",
+    "pages/speech/speech",
+    "pages/voteResult/voteResult",
+    "pages/signForm/signForm",
+    "pages/openFile/openFile",
+    "pages/number/number",
+    "pages/testWeb/testWeb",
+    "pages/setting/setting",
+    "pages/faceDetail/faceDetail"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "涉案财物平板端",
+    "navigationBarBackgroundColor": "#0faeff",
+    "backgroundColor": "#fbf9fe"
+  },
+  "nvueCompiler": "weex",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "智慧门锁",
+  "compilerVersion": "2.0.0",
+  "usingComponents": {}
+}

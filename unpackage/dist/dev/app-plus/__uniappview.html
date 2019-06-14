@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8" />
+        <script>
+            var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') ||
+                CSS.supports('top: constant(a)'))
+            document.write(
+                '<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' +
+                (coverSupport ? ', viewport-fit=cover' : '') + '" />')
+        </script>
+        <title>View</title>
+        <style>
+            * {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            input[type="search"i]::-webkit-search-cancel-button {
+                display: none;
+            }
+        </style>
+        <script>
+            var __wxConfig = {"debug":false,"appname":"智慧门锁","entryPagePath":"pages/index/index.html","page":{"pages/index/index.html":{"window":{"navigationBarTitleText":"涉案财物管理系统","titleNView":{"titleSize":"30"},"usingComponents":{}}},"pages/show/show.html":{"window":{"navigationBarTitleText":"涉案财物管理系统","titleNView":{"titleSize":"30"},"usingComponents":{}}},"pages/inOutStore/inOutStore.html":{"window":{"navigationBarTitleText":"待操作清单","titleNView":{"titleSize":"30"},"usingComponents":{}}},"pages/bleList/bleList.html":{"window":{"navigationBarTitleText":"蓝牙设备","titleNView":{"titleSize":"30"},"usingComponents":{}}},"pages/faceList/faceList.html":{"window":{"navigationBarTitleText":"人脸管理","titleNView":{"titleSize":"30"},"usingComponents":{}}},"pages/faceFail/faceFail.html":{"window":{"navigationBarTitleText":"注册人脸-账号确认","usingComponents":{}}},"pages/login/login.html":{"window":{"navigationBarTitleText":"人脸验证","titleNView":{"titleSize":"30"},"usingComponents":{"m-input":"/components/m-input"}}},"pages/main/main.html":{"window":{"navigationBarTitleText":"登录模板","usingComponents":{}}},"pages/reg/reg.html":{"window":{"navigationBarTitleText":"注册","usingComponents":{"m-input":"/components/m-input"}}},"pages/pwd/pwd.html":{"window":{"navigationBarTitleText":"找回密码","usingComponents":{"m-input":"/components/m-input"}}},"pages/user/user.html":{"window":{"navigationBarTitleText":"我的","usingComponents":{}}},"pages/downimg/downimg.html":{"window":{"navigationBarTitleText":"资料下载","usingComponents":{}}},"pages/registFace/registFace.html":{"window":{"navigationBarTitleText":"注册人脸","usingComponents":{"m-input":"/components/m-input"}}},"pages/logins/logins.html":{"window":{"navigationBarTitleText":"账号登录","usingComponents":{}}},"pages/meetingAgenda/meetingAgenda.html":{"window":{"navigationBarTitleText":"会议议程","usingComponents":{}}},"pages/meetingFile/meetingFile.html":{"window":{"navigationBarTitleText":"会议文件","usingComponents":{}}},"pages/vote/vote.html":{"window":{"navigationBarTitleText":"投票","usingComponents":{}}},"pages/voteDetail/voteDetail.html":{"window":{"navigationBarTitleText":"投票详情","usingComponents":{}}},"pages/speech/speech.html":{"window":{"usingComponents":{}}},"pages/voteResult/voteResult.html":{"window":{"usingComponents":{}}},"pages/signForm/signForm.html":{"window":{"usingComponents":{}}},"pages/openFile/openFile.html":{"window":{"usingComponents":{}}},"pages/number/number.html":{"window":{"navigationBarTitleText":"操作员","titleNView":{"titleSize":"30"},"usingComponents":{}}},"pages/testWeb/testWeb.html":{"window":{"navigationBarTitleText":"测试接口","usingComponents":{}}},"pages/setting/setting.html":{"window":{"navigationBarTitleText":"设置","titleNView":{"titleSize":"30"},"usingComponents":{}}},"pages/faceDetail/faceDetail.html":{"window":{"navigationBarTitleText":"人脸详情","titleNView":{"titleSize":"30"},"usingComponents":{}}}},"global":{"window":{"navigationBarTextStyle":"white","navigationBarTitleText":"涉案财物平板端","navigationBarBackgroundColor":"#0faeff","backgroundColor":"#fbf9fe"}},"tabBar":{"color":"","selectedColor":"","backgroundColor":"","borderStyle":"black","list":[],"position":"bottom"},"networkTimeout":{"request":60000,"connectSocket":60000,"uploadFile":60000,"downloadFile":60000},"platform":"devtools","pages":["pages/index/index","pages/show/show","pages/inOutStore/inOutStore","pages/bleList/bleList","pages/faceList/faceList","pages/faceFail/faceFail","pages/login/login","pages/main/main","pages/reg/reg","pages/pwd/pwd","pages/user/user","pages/downimg/downimg","pages/registFace/registFace","pages/logins/logins","pages/meetingAgenda/meetingAgenda","pages/meetingFile/meetingFile","pages/vote/vote","pages/voteDetail/voteDetail","pages/speech/speech","pages/voteResult/voteResult","pages/signForm/signForm","pages/openFile/openFile","pages/number/number","pages/testWeb/testWeb","pages/setting/setting","pages/faceDetail/faceDetail"],"subPackages":[],"nvueCompiler":"weex","splashscreen":{"alwaysShowBeforeRender":true,"autoclose":false},"compilerVersion":"2.0.0","usingComponents":{}}
+        </script>
+        <script>
+            var __id__ = '';
+            window.__dispatchGenerateFunc__ = function(page) {
+                __id__ = page;
+                document.title = page;
+                // window.history.pushState('', '', page);
+                var wxss = page.replace('.html', '.wxss')
+                if (
+                    typeof __wxAppCode__ !== 'undefined' &&
+                    __wxAppCode__.hasOwnProperty(wxss)
+                ) {
+                    var setCssToHead = __wxAppCode__[wxss]
+                    typeof setCssToHead === 'function' && setCssToHead()
+                    document.dispatchEvent(new CustomEvent("generateFuncReady", {
+                        detail: {
+                            generateFunc: $gwx(page.replace('.html', '.wxml'))
+                        }
+                    }));
+                } else {
+                    plus.webview.currentWebview().setJsFile('_www/' + page.replace('.html', '.js'));
+                }
+            };
+        </script>
+        <script src="__uniappes6.js"></script>
+        <script src="uniapp://ready"></script>
+    </head>
+
+    <body>
+        <div></div>
+    </body>
+
+</html>
