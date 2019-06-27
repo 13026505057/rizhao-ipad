@@ -2,14 +2,16 @@
 	export default {
 		onLaunch: function() {
 			var self = this;
-			
-			
+			let timerWs = null;
+			let timerWs2 = null;
+			let timerWs3 = null;
 			let isfirst = 1;
-			
+			let err = 0;
 			
 			// #ifdef APP-PLUS
 			var self = this;
 			let countNum = 0;
+			let countNum2 = 0;
 			let countSuccess = 0;
 			this.version = plus.runtime.version;
 			// console.log(plus.device.uuid);
@@ -85,52 +87,102 @@
 			});
 			uni.onSocketOpen(function (res) {
 			  console.log('WebSocket连接已打开！');
+			  countNum = 0;
+			  countNum2 = 0;
+			  console.log(countNum)
+			  clearInterval(timerWs2)
+			  clearInterval(timerWs3)
 			  var msg = {"code":"init","client_id":plus.device.uuid};
 			  var sendMsg = JSON.stringify(msg);
 			  uni.sendSocketMessage({
 			    data: sendMsg
 			  });
+			  console.log('已发送')
+			  timerWs = setInterval(function(){
+				console.log('已发送')
+				uni.sendSocketMessage({
+				  data: sendMsg
+				});
+			  },10000)
+			  
 			});
 			uni.onSocketClose(function (res) {
 			  console.log('WebSocket 已关闭！');
-			  uni.showModal({
-			  	title: '提示',
-			  	content: '连接主机失败，重新连接？',
-			  	success: function (res) {
-			  		if (res.confirm) {
-			  			uni.connectSocket({
-			  			  url: self.$store.state.wsUrl,
-			  			  success: (res) => {
-			  					
-			  			  }
-			  			});
-			  		} else if (res.cancel) {
-			  			console.log('用户点击取消');
-				
-			  		}
-			  	}
-			  });
+			  clearInterval(timerWs);
+			  timerWs2 = setInterval(function(){
+				  countNum = countNum+1;
+				  console.log(countNum)
+				  if(countNum<5){
+					uni.connectSocket({
+					  url: self.$store.state.wsUrl,
+					  success: (res) => {
+						
+					  }
+					});
+				  }else{
+					  clearInterval(timerWs2)
+					  uni.showModal({
+					  	title: '提示',
+					  	content: '连接主机失败，重新连接？',
+					  	success: function (res) {
+					  		if (res.confirm) {
+					  			uni.connectSocket({
+					  			  url: self.$store.state.wsUrl,
+					  			  success: (res) => {
+					  				
+					  			  }
+					  			});
+					  		} else if (res.cancel) {
+					  			console.log('用户点击取消');
+					  				
+					  		}
+					  	}
+					  });
+					  
+				  }
+			  },2000)
+			  
 			  
 			});
 			uni.onSocketError(function (res) {
-				uni.showModal({
-					title: '提示',
-					content: '连接主机失败，重新连接?',
-					success: function (res) {
-						if (res.confirm) {
-							uni.connectSocket({
-							  url: self.$store.state.wsUrl,
-							  success: (res) => {
-									console.log(JSON.stringify(res));
-									
-							  }
-							});
-						} else if (res.cancel) {
-							console.log('用户点击取消');
-						}
-					}
-				});
-			    console.log('WebSocket连接打开失败，请检查！');
+				console.log('WebSocket 错误！');
+				clearInterval(timerWs);
+				err = err+1;
+				if(err!=1){
+					return;
+				}
+				timerWs3 = setInterval(function(){
+								  countNum2 = countNum2+1;
+								  console.log(countNum2)
+								  if(countNum2<5){
+									uni.connectSocket({
+									  url: self.$store.state.wsUrl,
+									  success: (res) => {
+										
+									  }
+									});
+								  }else{
+									  clearInterval(timerWs3)
+									  uni.showModal({
+									  	title: '提示',
+									  	content: '连接主机失败，重新连接？',
+									  	success: function (res) {
+									  		if (res.confirm) {
+									  			uni.connectSocket({
+									  			  url: self.$store.state.wsUrl,
+									  			  success: (res) => {
+									  				
+									  			  }
+									  			});
+									  		} else if (res.cancel) {
+									  			console.log('用户点击取消');
+									  				
+									  		}
+									  	}
+									  });
+									 
+								  }
+				},2000)
 			});
 			// #endif
 		

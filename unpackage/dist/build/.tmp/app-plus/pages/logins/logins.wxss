@@ -18,7 +18,7 @@ page,._div,._dl,._dt,._dd,._ul,._ol,._li,._h1,._h2,._h3,._h4,._h5,._h6,._pre,._c
 	height: 60rpx;
 }
 .title{
-	width:150rpx!important;
+	width:230rpx!important;
 	height:80rpx!important;
 	display: inline-block;
 	/* background-color: #eee; */

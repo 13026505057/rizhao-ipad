@@ -352,7 +352,7 @@
 		float: left;
 		text-align: center;
 		/* background-color: red; */
-		margin-left:40upx;
+		margin-left:30upx;
 		margin-top: 60upx;
 		font-size: 60upx;
 		font-weight: bold;

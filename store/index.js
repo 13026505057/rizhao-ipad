@@ -8,8 +8,8 @@ const store = new Vuex.Store({
         /**
          * 是否需要强制登录
          */
-		requestUrl:'http://www.kofanchina.com/exhibit',
-		sourceUrl:'http://www.kofanchina.com/static/',
+		requestUrl:'http://10.53.187.244/exhibit',
+		sourceUrl:'http://10.53.187.244/static/',
 		htmlUrl:'http://192.168.2.25/images/file/html/openFile.html?fileUrl=',
 		// wsUrl:'ws://118.24.220.77:8080/park',
 		wsUrl:'ws://180.76.156.199:8002/',

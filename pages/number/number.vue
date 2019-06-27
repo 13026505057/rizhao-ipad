@@ -46,7 +46,8 @@
 					user_tel:'',
 					face_url:""
 				},
-				disAbled:true
+				disAbled:true,
+				deviceId:''
 				
 				
 			}
@@ -54,6 +55,18 @@
 		onLoad() {
 			
 			this.getUserInfo();
+			var self = this;
+			
+			try {
+				var value = uni.getStorageSync('ble_key');
+				if (value) {
+					self.deviceId = value;
+					
+				}
+			} catch (e) {
+				// error
+			}
+			
 		},
 		methods: {
 			openDoorClick(){
@@ -61,19 +74,20 @@
 				
 				if(this.disAbled){
 					self.disAbled = false;
-					this.bleSendMsg();
+					self.bleSendMsg();
 					setTimeout(function(){
 						self.disAbled = true;
 						uni.navigateBack({
 							delta: 2
 						});
-					},10000)
+					},6000);
 				}else{
 					
 				}
 				
 			},
 			bleSendMsg(){
+				var self = this;
 				var buffer = new ArrayBuffer(5)
 				var dataView = new DataView(buffer)
 				dataView.setUint8(0, 82);
@@ -85,7 +99,7 @@
 				// console.log(arrId)
 				uni.writeBLECharacteristicValue({
 				  // 这里的 deviceId 需要在 getBluetoothDevices 或 onBluetoothDeviceFound 接口中获取
-				  deviceId:'18:93:D7:45:1E:69',
+				  deviceId:self.deviceId,
 				  // 这里的 serviceId 需要在 getBLEDeviceServices 接口中获取
 				  serviceId:'0000ffe0-0000-1000-8000-00805f9b34fb',
 				  // 这里的 characteristicId 需要在 getBLEDeviceCharacteristics 接口中获取

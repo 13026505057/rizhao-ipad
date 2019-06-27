@@ -66,7 +66,7 @@ page,._div,._dl,._dt,._dd,._ul,._ol,._li,._h1,._h2,._h3,._h4,._h5,._h6,._pre,._c
 	float: left;
 	text-align: center;
 	/* background-color: red; */
-	margin-left:40rpx;
+	margin-left:30rpx;
 	margin-top: 60rpx;
 	font-size: 60rpx;
 	font-weight: bold;

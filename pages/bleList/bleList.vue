@@ -10,7 +10,7 @@
 		<view class="flexBox">
 			<view class="item"  v-for="(item,index) in bleList" :key='index' @click="bleConfig(item.deviceId)">
 				<image src="../../static/img/ble.png" mode=""></image>
-				<span>{{item.deviceId}}</span>
+				<span>{{item.name}}</span>
 			</view>
 			
 		</view>

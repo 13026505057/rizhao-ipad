@@ -165,7 +165,7 @@
 		right: 20px;
 	}
 	.title{
-		width:150upx!important;
+		width:230upx!important;
 		height:80upx!important;
 		display: inline-block;
 		/* background-color: #eee; */
